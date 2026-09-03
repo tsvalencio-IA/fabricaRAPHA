@@ -1,0 +1,15 @@
+SMARTSAT GPS 6.1.1 - HOTFIX CI / ESLINT
+
+Fonte unica usada: fabricaRAPHA-main.zip enviado em 03/09/2026.
+
+Erro corrigido:
+mobile/capacitor/scripts/prepare-android.mjs era lintado sem os globals do Node.js, gerando 10 erros no-undef para process, URL, Buffer e console.
+
+Alteracao funcional: nenhuma.
+Arquivo alterado: eslint.config.js
+
+Depois de substituir o arquivo na raiz do repositorio:
+1. aguarde o SMARTSAT CI ficar verde;
+2. confirme os Repository Secrets SMARTSAT_APP_URL e GOOGLE_SERVICES_JSON;
+3. GitHub > Actions > SMARTSAT Android Native Push > Run workflow;
+4. baixe o artifact smartsat-android-native-push-debug-apk.

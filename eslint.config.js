@@ -15,7 +15,7 @@ export default [
     }
   },
   {
-    files: ['server.js', 'tests/**/*.mjs'],
+    files: ['server.js', 'tests/**/*.mjs', 'mobile/capacitor/scripts/**/*.mjs'],
     languageOptions: {
       ecmaVersion: 2023,
       sourceType: 'module',
