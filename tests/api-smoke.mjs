@@ -69,7 +69,8 @@ await call('/api/send-command', { cookie: readOnlyCookie, method: 'POST', body: 
 const readOnlyCamera = await call('/api/live-camera/session', { cookie: readOnlyCookie, method: 'POST', body: JSON.stringify({ deviceId: 101, channel: 1 }) });
 assert(readOnlyCamera.payload.readOnly === true && readOnlyCamera.payload.sent.length === 0, 'Perfil somente leitura tentou enviar comando de câmera.');
 
-await call('/api/webhooks/traccar/pushover?secret=test-secret', { method: 'POST', body: JSON.stringify({ type: 'alarm' }), expectedStatus: 401 });
+await call('/api/webhooks/traccar/pushover?secret=segredo-invalido', { method: 'POST', body: JSON.stringify({ type: 'alarm' }), expectedStatus: 401 });
+await call('/api/webhooks/traccar/pushover?secret=test-secret', { method: 'POST', body: JSON.stringify({ type: 'alarm' }), expectedStatus: 503 });
 await call('/api/auth/logout', { cookie, method: 'POST', body: '{}' });
 await call('/api/auth/me', { cookie, expectedStatus: 401 });
 
