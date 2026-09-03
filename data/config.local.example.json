@@ -1,0 +1,10 @@
+{
+  "traccarUrl": "https://gps.smartsatrastreamento.com.br",
+  "port": 3000,
+  "pollingMs": 30000,
+  "authMode": "traccar-user-session",
+  "publicAppName": "SMARTSAT",
+  "featureLiveVideo": true,
+  "featureDriverIdentification": true,
+  "allowUnsafeGoogleTiles": true
+}

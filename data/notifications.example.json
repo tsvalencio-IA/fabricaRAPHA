@@ -1,0 +1,22 @@
+{
+  "publicAppUrl": "https://seu-dominio-smartsat.example.com",
+  "traccarWebhookSecret": "troque-por-um-segredo-forte",
+  "pushover": {
+    "appToken": "",
+    "userKey": "",
+    "device": "",
+    "sound": "pushover",
+    "priority": 0
+  },
+  "firebase": {
+    "vapidKey": "",
+    "webConfig": {
+      "apiKey": "",
+      "authDomain": "",
+      "projectId": "smartsat-gps",
+      "storageBucket": "",
+      "messagingSenderId": "",
+      "appId": ""
+    }
+  }
+}

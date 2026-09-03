@@ -1,0 +1,58 @@
+name: SMARTSAT Android Native Push
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "mobile/capacitor/**"
+      - ".github/workflows/android.yml"
+
+jobs:
+  debug-apk:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mobile/capacitor
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mobile/capacitor/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Instalar dependencias do wrapper
+        run: npm ci
+
+      - name: Preparar URL publica e Firebase Android
+        env:
+          SMARTSAT_APP_URL: ${{ secrets.SMARTSAT_APP_URL }}
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+          GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
+        run: node scripts/prepare-android.mjs
+
+      - name: Sincronizar Capacitor
+        run: npm run android:sync
+
+      - name: Validar manifest e compilar APK debug
+        run: |
+          chmod +x android/gradlew
+          cd android
+          ./gradlew :app:processDebugGoogleServices :app:testDebugUnitTest :app:assembleDebug --no-daemon
+
+      - name: Publicar APK nativo SMARTSAT
+        uses: actions/upload-artifact@v4
+        with:
+          name: smartsat-android-native-push-debug-apk
+          path: mobile/capacitor/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
