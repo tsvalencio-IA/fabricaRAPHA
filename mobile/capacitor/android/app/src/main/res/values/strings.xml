@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SMARTSAT</string>
+    <string name="title_activity_main">SMARTSAT</string>
+    <string name="package_name">br.com.smartsatrastreadores.smartsat</string>
+    <string name="custom_url_scheme">br.com.smartsatrastreadores.smartsat</string>
+    <string name="smartsat_notification_channel_id">smartsat_alerts</string>
+    <string name="smartsat_notification_channel_name">Alertas SMARTSAT</string>
+    <string name="smartsat_notification_channel_description">Alertas de rastreamento, segurança e eventos dos veículos.</string>
+</resources>
