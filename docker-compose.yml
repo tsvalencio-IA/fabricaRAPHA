@@ -1,0 +1,20 @@
+services:
+  smartsat-gps:
+    build: .
+    container_name: smartsat-gps
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      TRACCAR_URL: "${TRACCAR_URL:-https://gps.smartsatrastreamento.com.br}"
+      TRACCAR_AUTH_MODE: "token-session-cookie"
+      # Coloque token/senha no arquivo data/config.local.json ou descomente abaixo.
+      # TRACCAR_TOKEN: ""
+      # TRACCAR_USER: ""
+      # TRACCAR_PASSWORD: ""
+    volumes:
+      - ./data:/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

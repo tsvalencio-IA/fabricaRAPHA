@@ -1,0 +1,12 @@
+node_modules/
+**/node_modules/
+dist/
+build/
+.env
+.env.*
+data/config.local.json
+data/notifications.local.json
+tmp/
+.DS_Store
+data/mobile-push-tokens.local.json
+mobile/capacitor/android/app/google-services.json
